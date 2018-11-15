@@ -9,8 +9,10 @@ int main(void){
 //    insertsort(arr,length,0);
 //    insertsort(arr,length,1);
 
-
     for(int i=0;i<length;i++)
         printf("%d ",arr[i]);
+
+    return 0;
+
 }
 
