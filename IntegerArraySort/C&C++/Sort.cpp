@@ -41,4 +41,5 @@ bool insertsort(int *arr,int length,int type){
             arr[j+1]=arr[j];
         arr[j+1]=temp;
     }
+    return true;
 }
