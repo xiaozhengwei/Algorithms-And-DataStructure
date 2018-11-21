@@ -15,18 +15,17 @@
  *                      为0从小到大
  *                      非0从大到小
  */
-bool bubbleSort(int *arr, int length, int type) {
-    if (length < 2)
-        return false;
-    for (int i = 0,state=0; i < length - 1&&state==0; i++,state=0)
-        for (int j = 0; j < length - i - 1; j++)
-            if (type ? arr[j] < arr[j + 1] : arr[j] > arr[j + 1]) {
-                arr[j] = arr[j] ^ arr[j + 1];
-                arr[j + 1] = arr[j] ^ arr[j + 1];
-                arr[j] = arr[j] ^ arr[j + 1];
-                state=1;
-            }
-    return true;
+void bubbleSort(int *arr, int length, int type) {
+	if (length < 2)
+		return;
+	for (int i = 0, state = 0; i < length - 1 && state == 0; i++, state = 0)
+		for (int j = 0; j < length - i - 1; j++)
+			if (type ? arr[j] < arr[j + 1] : arr[j] > arr[j + 1]) {
+				arr[j] = arr[j] ^ arr[j + 1];
+				arr[j + 1] = arr[j] ^ arr[j + 1];
+				arr[j] = arr[j] ^ arr[j + 1];
+				state = 1;
+			}
 }
 
 /**
@@ -42,14 +41,13 @@ bool bubbleSort(int *arr, int length, int type) {
  *                      为0从小到大
  *                      非0从大到小
  */
-bool insertionSort(int *arr, int length, int type = 1) {
-    for (int i = 1; i < length; i++) {
-        int temp = arr[i], j;
-        for (j = i - 1; j >= 0 && type ? arr[j] < temp : arr[j] > temp; j--)
-            arr[j + 1] = arr[j];
-        arr[j + 1] = temp;
-    }
-    return true;
+void insertionSort(int *arr, int length, int type = 1) {
+	for (int i = 1; i < length; i++) {
+		int temp = arr[i], j;
+		for (j = i - 1; j >= 0 && type ? arr[j] < temp : arr[j] > temp; j--)
+			arr[j + 1] = arr[j];
+		arr[j + 1] = temp;
+	}
 }
 
 /**
@@ -67,21 +65,19 @@ bool insertionSort(int *arr, int length, int type = 1) {
  *                      为0从小到大
  *                      非0从大到小
  */
-bool selectionSort(int *arr, int length, int type) {
-    if (length < 2)
-        return false;
-    for (int i = 0; i < length - 1; i++) {
-
-        int extreme = arr[i], cursor = i;
-        for (int j = i + 1; j < length; j++)
-            if (type ? arr[j] > extreme : arr[j] < extreme) {
-                extreme = arr[j];
-                cursor = j;
-            }
-        arr[cursor] = arr[i];
-        arr[i] = extreme;
-    }
-    return true;
+void selectionSort(int *arr, int length, int type) {
+	if (length < 2)
+		return;
+	for (int i = 0; i < length - 1; i++) {
+		int extreme = arr[i], cursor = i;
+		for (int j = i + 1; j < length; j++)
+			if (type ? arr[j] > extreme : arr[j] < extreme) {
+				extreme = arr[j];
+				cursor = j;
+			}
+		arr[cursor] = arr[i];
+		arr[i] = extreme;
+	}
 }
 
 /**
@@ -94,13 +90,27 @@ bool selectionSort(int *arr, int length, int type) {
  * @param arr       :   标记数组首地址的指针
  * @param length    :   数组长度
  * @param type      :   排序类型
- * @param temp      :   最小值的下标
- * @param extreme   :   标记极值,极大值,极小值
+ * @patem key		:	关键数据(进行比较的数字)
  *                      为0从小到大
  *                      非0从大到小
  */
-bool quickSort(int *arr, int length, int type) {
-    if(length<0)
-        return  false;
-
+void quickSort(int *arr, int length, int type) {
+	int i = 0, j = length - 1, key = arr[0];
+	if (length > 1) {
+		while (i != j) {
+			for (/*徐思涵天下第一美*/; i < j; j--)
+				if (type ? arr[j] > key:arr[j] < key) {
+					arr[i] = arr[j];
+					break;
+				}
+			for (/*徐思涵天下第一美*/; i < j; i++)
+				if (type ? arr[i] < key : arr[i] > key) {
+					arr[j] = arr[i];
+					break;
+				}
+			arr[i] = key;
+		}
+		quickSort(arr, i, type);
+		quickSort(arr + i + 1, length - i - 1, type);
+	}
 }
