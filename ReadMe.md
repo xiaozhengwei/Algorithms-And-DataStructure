@@ -1,3 +1,6 @@
 #   算法&数据结构
 
-IntegerArraySort	:	整型数组的排序
+Sort		:	排序
+
+DynamicProgramming	:	动态规划
+
