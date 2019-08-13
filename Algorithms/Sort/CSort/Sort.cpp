@@ -18,14 +18,21 @@
 void bubbleSort(int *arr, int length, int type) {
 	if (length < 2)
 		return;
-	for (int i = 0, state = 0; i < length - 1 && state == 0; i++, state = 0)
-		for (int j = 0; j < length - i - 1; j++)
+	
+    int state = 1;//标记状态,若数组没有发生变化,则停止排序
+	for (int i = 0; i < length - 1; i++){
+		for (int j = 0; j < length - i - 1; j++){
 			if (type ? arr[j] < arr[j + 1] : arr[j] > arr[j + 1]) {
 				arr[j] = arr[j] ^ arr[j + 1];
 				arr[j + 1] = arr[j] ^ arr[j + 1];
 				arr[j] = arr[j] ^ arr[j + 1];
-				state = 1;
+				state = 0;
 			}
+		}
+		if (state==1) {
+            break;
+        }
+	}
 }
 
 /**
@@ -44,8 +51,9 @@ void bubbleSort(int *arr, int length, int type) {
 void insertionSort(int *arr, int length, int type = 1) {
 	for (int i = 1; i < length; i++) {
 		int temp = arr[i], j;
-		for (j = i - 1; j >= 0 && type ? arr[j] < temp : arr[j] > temp; j--)
+		for (j = i - 1; j >= 0 && type ? arr[j] < temp : arr[j] > temp; j--){
 			arr[j + 1] = arr[j];
+		}
 		arr[j + 1] = temp;
 	}
 }
@@ -98,12 +106,12 @@ void quickSort(int *arr, int length, int type) {
 	int i = 0, j = length - 1, key = arr[0];
 	if (length > 1) {
 		while (i != j) {
-			for (/*徐思涵天下第一美*/; i < j; j--)
+			for (; i < j; j--)
 				if (type ? arr[j] > key:arr[j] < key) {
 					arr[i] = arr[j];
 					break;
 				}
-			for (/*徐思涵天下第一美*/; i < j; i++)
+			for (; i < j; i++)
 				if (type ? arr[i] < key : arr[i] > key) {
 					arr[j] = arr[i];
 					break;

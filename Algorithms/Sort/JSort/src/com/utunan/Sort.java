@@ -99,9 +99,9 @@ public class Sort {
             }
 
             if (low < high) {
-                int temp = nums[low];
-                nums[low] = nums[high];
-                nums[high] = temp;
+                nums[low] ^= nums[high];
+                nums[high] ^= nums[low];
+                nums[low] ^= nums[high];
             }
         }
 

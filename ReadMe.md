@@ -1,6 +1,9 @@
-#   算法&数据结构
+#算法&数据结构
 
-Sort		:	排序
+- Algorithms : 算法
+  - DynamicProgramming : 动态规划 
+  -  Sort : 排序
 
-DynamicProgramming	:	动态规划
+- DataStructure : 数据结构
 
+  
