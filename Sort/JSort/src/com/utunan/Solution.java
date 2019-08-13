@@ -27,7 +27,7 @@ public class Solution {
     @Test
     public void quickSortTest(){
         int nums[]={9,2,4,6,1,4,7,8,5,2,4,1,2,3};
-        Sort.quickSort(nums,0,nums.length-1,true);
+        Sort.quickSort(nums,0,nums.length-1,false);
         for(int i:nums){
             System.out.printf(String.valueOf(i)+" ");
         }

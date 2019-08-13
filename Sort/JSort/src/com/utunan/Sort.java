@@ -73,37 +73,41 @@ public class Sort {
      *
      * @Param nums : 待排序数组
      * @Param type : 排序方式(true:从小到大,false:从大到小)
-     * @时间复杂度: Max:O(n2) Min:O(n) Average:O(n2)
-     * @空间复杂度: O(1)
+     * @时间复杂度: Max:O(n2) Min:O(nlgn) Average:O(nlgn)   ===>信息学中 lgn:log2n
+     * @空间复杂度: O(nlgn)
      * @稳定性 : 不稳定
      */
     public static void quickSort(int[] nums, int start, int end, boolean type) {
 
         int low = start;
         int high = end;
+
         if (low >= high) {
             return;
         }
 
-
         int lookout = nums[start];
+
         while (low < high) {
 
-            while (nums[high] >= lookout && low < high) {
+            while ((type ? nums[high] >= lookout : nums[high] <= lookout) && low < high) {
                 high--;
             }
 
-
-            while (nums[low] <= lookout && low < high) {
+            while ((type ? nums[low] <= lookout : nums[low] >= lookout) && low < high) {
                 low++;
             }
 
             if (low < high) {
-                int temp=nums[low];
-                nums[low]=nums[high];
-                nums[high]=temp;
+                int temp = nums[low];
+                nums[low] = nums[high];
+                nums[high] = temp;
             }
         }
+
+        nums[start] = nums[low];
+        nums[low] = lookout;
+
         quickSort(nums, start, low - 1, type);
         quickSort(nums, high + 1, end, type);
 
@@ -141,6 +145,5 @@ public class Sort {
         }
 
     }
-
 
 }
