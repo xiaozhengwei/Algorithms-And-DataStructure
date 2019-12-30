@@ -1,12 +1,8 @@
 package com.utunan;
 
-import org.junit.Test;
 
-import java.nio.channels.FileChannel;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * 链表节点
@@ -91,22 +87,22 @@ public class Solution {
      */
     public int lengthOfLongestSubstring(String s) {
 
-        int start=0;
-        int end=0;
+        int start = 0;
+        int end = 0;
 
-        char []chars=s.toCharArray();
+        char[] chars = s.toCharArray();
 
-        int length=chars.length;
-        int maxLength=0;
+        int length = chars.length;
+        int maxLength = 0;
 
         Map<Character, Integer> map = new HashMap<>();
 
-        for(;end<length;end++){
-            if(map.containsKey(chars[end])){
-                start=Math.max(map.get(chars[end]),start);
+        for (; end < length; end++) {
+            if (map.containsKey(chars[end])) {
+                start = Math.max(map.get(chars[end]), start);
             }
-            maxLength=Math.max(maxLength,end-start+1);
-            map.put(s.charAt(end),end+1);
+            maxLength = Math.max(maxLength, end - start + 1);
+            map.put(s.charAt(end), end + 1);
         }
 
         return maxLength;
@@ -132,12 +128,12 @@ public class Solution {
      * @return
      */
     public String longestPalindrome(String s) {
-        char [] chars =s.toCharArray();
-        int length=chars.length;
-        int maxLength=0;
+        char[] chars = s.toCharArray();
+        int length = chars.length;
+        int maxLength = 0;
 
 
-        for(int i=0;i<length;i++){
+        for (int i = 0; i < length; i++) {
 
         }
         return "";
@@ -166,9 +162,5 @@ public class Solution {
 
     }
 
-    @Test
-    public void test(){
-
-    }
 
 }
